@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<style>
+.text{
+font-family:"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+font-size:30px;
+}
+</style>
+</head>
+
+<body align="center">
+<script>
+var i=0;
+var keys=new Array();
+function checkKey(e) {
+    e = e || window.event;
+    keys.push(e.keyCode);
+	if(keys.length==10)
+	{  
+		var tkeys=new Array();
+		tkeys=keys.slice(0);
+	   tkeys.toString();
+	   if(tkeys=="38,38,40,40,37,39,37,39,66,65" || tkeys=="38,38,40,40,37,39,37,39,98,97")
+	    window.location="task3.html";
+		else
+		{
+		  keys.shift();
+		}
+	}
+}
+document.onkeydown = checkKey;
+</script>
+
+<div class="img">
+<img src="konamicode.png" />
+</div>
+<div CLASS="text">
+ENTER THE CHEAT CODE TO CONTINUE ....
+</div>
+</body>
+
+</html>

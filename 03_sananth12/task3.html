@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+
+<style>
+.img{
+position:relative;
+top:0px;
+left:450px;
+}
+.main
+{
+position:relative;
+top:100px;
+left:550px;
+font-family:"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+color:inherit;
+}
+ table.t1 table {
+border-collapse: collapse;
+padding-bottom:2px;                    
+border-style: solid;
+border-color: black;
+border-width: 3px;
+height: 100px;
+ }
+
+.heading
+{
+color:#555;
+font-size:18px;
+}
+
+
+input,textarea,select {
+background: #fff;
+border: 1px solid #c6c9cc;
+border-radius: 4px;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 #fff;
+font: 13px/20px 'Droid Sans', Arial, 'Helvetica Neue', 'Lucida Grande', sans-serif;
+margin: 0 0 20px 0;
+padding: 5px;
+width: 250px;
+height:35;
+font-size:100%;
+/*border-color:blue;*/
+}
+</style>
+
+</head>
+
+<body>
+    
+<script>
+function hack(){
+if(document.getElementById("school").value=="Others")
+	 {
+	    //document.write(document.getElementById("other_school").type);
+		document.getElementById("other_school").style.display="block";
+	 }
+}
+function checkform()
+    {
+      var flag=0;
+      var fname=document.getElementById("name");
+      var password=document.getElementById("pass");
+      var pass_rep=document.getElementById("rep_pass");
+      var ch=fname.value.charAt(0);
+      var cnt=0;
+	  var box=document.mainform.club;
+	  //alert(box.length);
+	  for (var i=0; i<box.length; i++)
+	  {
+       if (box[i].type === "checkbox" && box[i].checked === true) 
+        cnt++;
+	  }
+	  if(cnt<3)
+	  {
+	    document.getElementById("club").disabled = true;     
+          document.getElementById("club").disabled = false;
+         document.getElementById("club_error").innerHTML = "Choose atleast 3 clubs";    
+          flag++;//return false;
+	  
+	  }
+		
+       if(ch=== ch.toLowerCase() && ch !== ch.toUpperCase())
+      {
+         document.getElementById("name").disabled = true;
+         document.getElementById("name").style.borderColor = 'red';        
+          document.getElementById("name").disabled = false;
+         document.getElementById("name_error").innerHTML = "First letter must be in UPPER-CASE";    
+          flag++;//return false;
+      }
+      if(fname.value=="")
+      {  flag++;
+         document.getElementById("name").disabled = true;
+         document.getElementById("name").style.borderColor = 'red';        
+          document.getElementById("name").disabled = false;
+         document.getElementById("name_error").innerHTML = "This field must not be left empty";    
+          //return false;
+      }
+       if(document.getElementById("dob").value.length!=10)
+       {  flag++;
+         document.getElementById("dob").disabled = true;
+         document.getElementById("dob").style.borderColor = 'red';        
+          document.getElementById("dob").disabled = false;
+         document.getElementById("dob_error").innerHTML = "Invalid format";    
+          //return false;
+      }
+      /* if(document.getElementById("dob").value.length==10)
+       { var i; 
+         var date=document.getElementById("dob").value;
+ 	 document.getElementById("dob").disabled = true;  
+         var day=date[0]+date[1];
+         var month=date[4]+date[3];
+	 var year=date[7]+date[8]+date[9]+date[6];
+         for(i=0;i<10;i++)
+         {
+             if (i==2||i==4)
+                if (date[i]!='/' )
+                 document.getElementById("dob_error").innerHTML = "Invalid format"; 
+             else if(date[i]>'9' || date[i]<'0')
+               document.getElementById("dob_error").innerHTML = "Invalid format"; 
+	}
+         
+         document.getElementById("dob").style.borderColor = 'red';    
+         document.getElementById("dob").disabled = false;    
+          //return false;
+      }*/
+      if(document.getElementById("dob")=="")
+       {  flag++;
+         document.getElementById("dob").disabled = true;
+         document.getElementById("dob").style.borderColor = 'red';        
+          document.getElementById("dob").disabled = false;
+         document.getElementById("dob_error").innerHTML = "This field must not be left empty";    
+          //return false;
+      }
+     if(password.value=="")
+     {
+       document.getElementById("pass").disabled = true;
+         document.getElementById("pass").style.borderColor = 'red';        
+          document.getElementById("pass").disabled = false;
+         document.getElementById("pass_error").innerHTML = "This field must not be left empty";    
+         flag++;// return false;
+     }
+	  if(password.value!="")
+     {
+          if(password.value.length <5 || password.value.length >10)
+		 {document.getElementById("pass").disabled = true;
+         document.getElementById("pass").style.borderColor = 'red';        
+          document.getElementById("pass").disabled = false;
+         document.getElementById("pass_error").innerHTML = "Password must have 5-10 characters only";    
+         flag++;// return false;
+		 }
+		 else
+		 {
+		   var ex=/\W/;
+		  if(ex.test(password.value))
+		   {document.getElementById("pass").disabled = true;
+         document.getElementById("pass").style.borderColor = 'red';        
+          document.getElementById("pass").disabled = false;
+         document.getElementById("pass_error").innerHTML = "Password must contain a-z, A-Z ,0-9, _ characters only";    
+         flag++;// return false;
+		     
+		   }
+		 }
+		 
+     }
+	
+     if(document.getElementById("roll").value.length!=10)
+     {
+               
+              document.getElementById("roll").disabled = true;
+         document.getElementById("roll").style.borderColor = 'red';        
+          document.getElementById("roll").disabled = false;
+         document.getElementById("roll_error").innerHTML = "Roll no. must have 10 digits";    
+         flag++;// return false;
+     }
+       if(document.getElementById("roll").value=="")
+     {
+              document.getElementById("roll").disabled = true;
+         document.getElementById("roll").style.borderColor = 'red';        
+          document.getElementById("roll").disabled = false;
+         document.getElementById("roll_error").innerHTML = "This field must not be left empty";    
+         flag++;// return false;
+     }
+	  if(document.getElementById("email").value=="")
+     {
+              document.getElementById("email").disabled = true;
+         document.getElementById("email").style.borderColor = 'red';        
+          document.getElementById("email").disabled = false;
+         document.getElementById("email_error").innerHTML = "This field must not be left empty";    
+         flag++;// return false;
+     }
+	 if(document.getElementById("email").value!="")
+     {    
+	     /**        Simple validation but unreliable       ***/
+         //var re = /\S+@\S+\.\S+/;
+		 /**        The official standard  known as RFC 2822 which I came across online **/
+		 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          if(!re.test(email.value))
+		   {  document.getElementById("email").disabled = true;
+         document.getElementById("email").style.borderColor = 'red';        
+          document.getElementById("email").disabled = false;
+         document.getElementById("email_error").innerHTML = "Invalid e-mail id";    
+         flag++;// return false;
+		 }
+		 
+     }
+     if(pass_rep.value!=password.value)
+     {
+	document.getElementById("rep_pass").disabled = true;
+         document.getElementById("rep_pass").style.borderColor = 'red';        
+          document.getElementById("rep_pass").disabled = false;
+         document.getElementById("rep_pass_error").innerHTML = "The passwords donot match!";    
+         flag++;// return false;
+     } 
+     if(pass_rep.value=="")
+     {
+       document.getElementById("rep_pass").disabled = true;
+         document.getElementById("rep_pass").style.borderColor = 'red';        
+          document.getElementById("rep_pass").disabled = false;
+         document.getElementById("rep_pass_error").innerHTML = "This field must not be left empty";    
+         flag++;// return false;
+     }
+     if(document.getElementById("school").value=="")
+     {
+       document.getElementById("school").disabled = true;
+         document.getElementById("school").style.borderColor = 'red';        
+          document.getElementById("school").disabled = false;
+         document.getElementById("school_error").innerHTML = "This field must not be left empty";    
+         flag++;// return false;
+     }
+	 if(document.getElementById("cha").value=="" || document.getElementById("cha").value!="smwm")
+     {
+       document.getElementById("cha").disabled = true;
+         document.getElementById("cha").style.borderColor = 'red';        
+          document.getElementById("cha").disabled = false;
+         document.getElementById("cha_error").innerHTML = "The text entered is incorrect !";    
+         flag++;// return false;
+     }
+     if(flag!=0)
+      return false;
+     else
+      return true;
+    }
+      
+    </script>
+    
+    <div class="img">
+    <img src="delta.jpg" />
+    </div>
+    
+    
+    <div id="error"></div>
+     
+    <div class="main" >
+    <form action="register.php" name="mainform" method="post" enctype="multipart/form-data">
+    
+    <table class="t1">
+    
+    
+    <tr ><div class="heading" id="namediv">Name<text style="color:red;">*<text></div></tr>
+    <tr ><div id="name_error"></div></tr>
+    <tr ><input type="text" name="name" id="name"  /></tr>
+    
+    
+    <tr ><div  class="heading">Date of Birth (dd/mm/yyyy)<text style="color:red;">*<text></div></tr>
+    <tr ><div id="dob_error"></div></tr>
+    <tr> <input type="text" name="txtDate" maxlength="10" id="dob"></tr> 
+    
+    <tr><div class="heading" >Gender:</div></tr>
+    <tr><input type="radio" name="gender" value="male" style="width:25px;margin:10px 0 5px 0">Male<br>
+    <input type="radio" name="gender" value="female" style="width:25px">Female</tr>
+    
+    <tr><div class="heading">Roll Number<text style="color:red;">*<text></div></tr>
+    <tr ><div id="roll_error"></div></tr>
+    <tr><input type="text" name="rollnumber" id="roll"/></tr>
+    
+    <tr><div class="heading">Department</div></tr>
+    <tr><input type="text" name="dept" /></tr>
+    
+	<tr><div class="heading">E-mail id<text style="color:red;">*<text></div></tr>
+    <tr ><div id="email_error"></div></tr>
+    <tr><input type="text" name="email" id="email"/></tr> 
+	
+    <tr><div class="heading">Club Membership<text style="color:red;">*<text></div></tr>
+	<tr ><div id="club_error" style="color:red"></div></tr>
+    <tr><input type="checkbox" id="club" name="club[0]" value="delta" style="width:25px">Delta<br />
+        <input type="checkbox" id="club" name="club[1]" value="spider" style="width:25px">Spider<br />
+        <input type="checkbox" name="club[2]" id="club" value="rmi" style="width:25px">RMI<br />
+        <input type="checkbox" name="club[3]" id="club" value="3d" style="width:25px">3D<br />
+        <input type="checkbox" name="club[4]" id="club" value="feeds" style="width:25px">feeds<br />
+	 <input type="checkbox" name="club[5]"  id="club" value="other" style="width:25px">Others<br />
+   </tr>
+        
+    <tr><div class="heading">Residential Address</div></tr>
+    <tr>
+    <textarea name="address" id="address" style="width:250px;" >
+    
+    </textarea>
+    </tr>
+     
+    <tr><div class="heading">Last School Attended<text style="color:red;">*<text></div></tr>
+    <tr ><div id="school_error"></div></tr>
+    <tr><select name="school" id="school" onchange="hack()">
+        <option default>
+        <option>MIRS
+        <option>MVM
+	<option>KV
+	<option>PSBB
+	<option>CV
+        <option>SBOA
+	<option>DAV
+	<option>DPS
+	<option>Narayana
+        <option>Kota
+        <option>Others
+        </select>
+    </tr>
+    <tr ><input type="text"  name="other_school" id="other_school" style="display:none"></tr>
+	
+    <tr><div class="heading">Password:<text style="color:red;">*<text></div></tr>
+    <tr ><div id="pass_error"></div></tr>
+    <tr><input type="password" id="pass" name="password" /></tr>
+
+    <tr><div class="heading">Repeat Password:<text style="color:red;">*<text></div></tr>
+     <tr ><div id="rep_pass_error"></div></tr>
+    <tr><input type="password" id="rep_pass" name="rep_pass" /></tr>
+    
+    <tr><div class="heading">Passport size photo</div></tr>
+    <tr>
+    <div>
+	<input type="file" name="file" id="file" style="width:250px;"><br />	
+    </div>
+    </tr>
+	<tr><div class="heading">Enter the text shown below</div></tr>
+	
+    <tr><img src="Captcha.jpg"><br /><br /></tr>
+	<tr ><div id="cha_error"></div></tr>
+	<tr><input type="text" id="cha" name="cha" /></tr>
+    <tr ><div class="heading" ><text style="color:red;">*</text> -Required fields</div></tr>
+	<div >
+	<br />
+    <input name="submit" type="submit" value="Submit" onclick="return checkform()"/>
+    </div>    
+      
+	
+    </table> 
+    </form>
+    </div>
+    
+        
+
+</body>
+
+</html>
