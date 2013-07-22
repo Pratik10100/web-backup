@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<title>Delta Induction- Task 1</title>
+<h1 align="center"  >Delta Induction - Task 1</h1>
+<style>
+h1 { 
+    font-weight:bold; 
+    font-size:20.0pt; 
+    /*font-family:Tahoma, sans-serif; */
+    font-family:"Comic Sans MS", cursive, sans-serif;
+    color:RGB(0, 0, 128); 
+    border-bottom : thick double RGB(0, 0, 160);
+    }
+body { 
+         font-family:"Comic Sans MS", cursive, sans-serif;
+      color:RGB(0, 0, 128);  }
+.box
+{     border :20;
+   border-color : RGB(0, 0, 128);
+ margin-top : 10px;
+	  width:95px;
+	  height:60px;
+	 position:absolute;
+     
+}
+
+.form
+{
+    position:absolute;
+      top:450;
+      left:490;
+      
+}
+.text
+{
+   font-size : 25;  
+}
+#footer {
+   position:relative;
+   left:0px;
+   top:500px;
+   height:90px;
+   width:100%;
+  border-bottom : thick double RGB(0, 0, 160);
+  border-top:thick double RGB(0, 0, 160);
+  padding-bottom : 10px;  
+}
+
+
+
+</style>
+</head>
+
+
+
+<body onload="circle()">
+Task 1:<br /><br />* Create a Web Page that has a div <br />that moves along a specified path(Circular).<br /><br />* Hacker Mode included. 
+
+<div class="box" id="box" style=" margin: 0px auto;">
+<p class="text">TASK-1</p>
+</div>
+
+<script>
+var elm=document.getElementById("box");
+var t,animate,speed=0;
+var left1=window.innerWidth/2 ;
+var top1=window.innerHeight/2 ;
+function speedplus()
+{  
+   if(speed>=20)
+   {
+    
+   alert("Maximun speed!");}
+   else
+   {speed++;}
+}
+function speedminus()
+{
+   if(speed<=-3)
+   {
+    
+   alert("Minimun speed!");}
+   else
+   {speed--;}
+   
+   
+}
+
+function circle()
+{  clearInterval(t);
+   
+   clearTimeout(animate);
+ function pos( x, y ) 
+ {  
+    elm.style.left = (x - 20) + 'px';
+    elm.style.top = (y - 20) + 'px';
+  }
+ 
+    var increase = Math.PI * 2,
+    angle = 0,
+    x = 0,
+    y = 0; 
+   
+function rotate()
+{
+  
+    x = 150 * Math.cos( angle ) + 650;
+    y = 150 * Math.sin( angle ) + 225;
+	pos( x, y );
+    angle += increase;
+    angle += 0.06+(.02*speed);
+    
+}
+
+t=setInterval( rotate, 15 ); 
+}
+
+function square()
+{
+   var elm=document.getElementById("box");
+   
+   elm.style.left = 450+'px';
+   elm.style.top = 100+'px'; 
+    clearTimeout(animate);
+     clearInterval(t);
+  
+    moveRight();
+   function moveRight()
+{  clearTimeout(animate);
+   if(parseInt(elm.style.left)>=750)
+    {down();}
+   else{
+   elm.style.left = parseInt(elm.style.left) + 10 + 'px';
+   animate = setTimeout(moveRight,20-(speed*2));} 
+}
+function down()
+{   
+   if(parseInt(elm.style.top)>=350)
+   {left();}
+  else{
+   elm.style.top = parseInt(elm.style.top) +10 + 'px';
+   animate = setTimeout(down,20-(speed*2)); }
+}
+function left()
+{     
+     if(parseInt(elm.style.left)<=500)
+   {up();}
+       else{
+      elm.style.left = parseInt(elm.style.left) -10 + 'px';
+   animate = setTimeout(left,20-(speed*2));}
+}
+function up()
+{  
+  if(parseInt(elm.style.top)<=100)
+   {  moveRight();}
+   else{
+  elm.style.top = parseInt(elm.style.top) -10 + 'px';
+   animate = setTimeout(up,20-(speed*2)); }
+}
+
+}
+</script>
+
+
+<form class="form" id="form" align="center"  style="width:25%;border:10px groove #3333CC;padding:8px;">
+
+<input type="radio" name="inp" value="Circle" onclick="circle()" checked="checked" /> CIRCLE<br /> <br />
+<input type="radio" name="inp" value="Square" onclick="square()" /> SQUARE <br /> <br />
+Click to change speed<br />
+<input type="button" id="speed" value="Speed ++" onClick="speedplus()"  />
+<input type="button" id="speed" value="Speed --" onClick="speedminus()" />
+<br /> <br />
+</form>
+
+<div id="footer" align="center">
+<br />
+Ananthanatarajan.S<br />
+112112008<br />
+MME<br /><br />
+</div>
+
+</body>
+
+</html>

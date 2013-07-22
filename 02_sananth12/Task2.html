@@ -1,0 +1,284 @@
+<html>
+<head>
+<title>TASK 2</title>
+<h1 align="center">TASK II</h1>
+<link rel="stylesheet" type="text/css" href="calc.css" />
+<style>
+H1 {  
+   font: bold 30px/1 "helvetica neue", helvetica, arial, sans-serif;
+   border-bottom : thick double #db504d;
+    color:#4162a8;
+  padding-bottom:10px;
+  padding-top:10px;
+   
+    }
+
+.txt
+{
+  position:absolute;
+  top:200px;
+  font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+  color:#CC0000;
+  font-size:20px;
+  
+}
+.cal
+{
+  position:absolute;
+  top:200px;
+  left:550px;
+}
+.screen
+{
+   height:50px;
+   width:270px;
+  font: bold 20px/1 "helvetica neue", helvetica, arial, sans-serif;
+  text-align: right;
+ 
+}
+
+</style>
+</head>
+
+<body onload="reset()" onkeydown="detect(event);">
+
+<script> 
+var oper=""
+var num =""
+var s=document.getElementById('screen');
+
+function inp(n)
+{
+var s=document.getElementById('screen');
+s.value = s.value + n
+}
+ 
+function operator(op) {  
+var s=document.getElementById('screen');       
+oper = op;
+ num= s.value;
+ if(s.value=="" && oper=="-")
+  s.value="-";
+  else
+  s.value = ""
+}
+
+function equals()
+{
+var s=document.getElementById('screen');
+var n1=eval(num),n2=eval(s.value);
+
+
+if (oper =="+" ) 
+s.value = n1 + n2;
+else if ( oper == "-" )
+s.value = n1- n2;
+else if (oper == "*")
+s.value = n1 * n2;
+else if (oper =="/")
+s.value = n1/n2 ;
+}
+function hacker(t)
+{var s=document.getElementById('screen');
+    if(t=="cos")
+   s.value=Math.cos(eval(s.value)* (Math.PI) / (180));
+   else if(t=="sin")
+  s.value=Math.sin(eval(s.value)* (Math.PI) / (180));
+  else if(t=="log")
+  s.value=Math.log(Number(eval(s.value)))/ Math.LN10 
+ else if(t=="exp")
+  s.value=Math.exp(eval(s.value))
+ else if(t=="sqrt")
+   s.value=Math.sqrt(eval(s.value));
+}
+function fact() 
+{
+var s=document.getElementById('screen');
+n = Number(s.value)
+if (error(n) ==false) 
+return;
+var answer = 1;
+for (i = n; i >=2; i--)
+answer = answer*i;
+
+s.value = answer;
+}
+
+function error(n)
+{
+if ( n < 0)
+ {
+alert("Negative number ! :(" )
+return false 
+}
+
+if (n%1 !=0) {
+alert("Enter a whole number!")
+return false
+}
+} 
+
+function reset() 
+{var s=document.getElementById('screen');
+s.value = "";
+num = "";
+oper="";
+}
+function detect(evt)
+{
+if((evt.keyCode>95) && (evt.keyCode<106))
+{
+      var nbr = evt.keyCode-96;
+      inp(nbr);
+}
+else if((evt.keyCode>47) && (evt.keyCode<58))
+{
+        var nbr = evt.keyCode-48;
+       inp(nbr);
+ }
+ else if(evt.keyCode==107 || evt.keyCode==187)
+       operator("+")
+
+else if(evt.keyCode==109 || evt.keyCode==189)
+         operator("-");
+
+else if(evt.keyCode==106)      
+        operator("*");
+        
+ else if(evt.keyCode==111 || evt.keyCode==47 || evt.keyCode==191)     
+   operator("/");
+        
+else if(evt.keyCode==110 || evt.keyCode==190 ||evt.keyCode==78)        
+   inp(".");       
+
+else if(evt.keyCode==13)       
+    equals();      
+        
+ else if(evt.keyCode==46)        
+    reset();      
+ else if(evt.keyCode==8)       
+ del();       
+ 
+}
+function del()
+{
+var s=document.getElementById('screen');
+s.value=s.value.slice(0,s.value.length-1);
+}
+</script> 
+
+
+<div class="txt">
+<br /><br /> <br />
+<br />* Responds to keyboard input.
+<br />* Angles are in degrees.
+<br />* Square root included.
+<br />* Hacker mode included.
+<br />* CE is Delete in keyboard.
+
+</div>
+
+<div class="cal" align="center">
+
+<table id="calc">
+            
+ <tr>
+       <td colspan="5">
+  		<input type="text" readonly="readonly" class="screen" id="screen" >
+	</td>
+</tr>
+
+<tr>
+	<td >
+	 <button class="key"  onclick=hacker("sin")>sin</button>
+	 </td>        
+   
+	<td >
+	 <button class="key"  onclick=operator("/")>/</button>
+	</td>
+	 <td >
+	<button class="key"  onclick=operator("*")>x</button>
+	</td>
+	 <td >
+	 <button class="key" ">DEL</button>
+	 </td>
+	 <td >
+	 <button class="red" onclick="reset()">CE</button>
+	</td>
+</tr>
+<tr>
+    
+			<td >
+               <button class="key"  onclick=hacker("cos")>cos</button>
+    </td>
+			<td >
+          <button class="key"  onclick = "inp(7)">7</button>
+    </td>
+    <td >
+			<button class="key"  onclick="inp(8)">8</button>
+    </td>
+    <td >
+         <button class="key"  onclick="inp(9)">9</button>
+    </td>
+    <td >
+            <button class="key"  onclick=operator("-")>-</button>
+    </td>
+</tr>
+ <tr>
+			<td >
+               <button class="key" onclick=hacker("exp")>exp</button>
+    </td>                
+			<td >
+            <button class="key"  onclick="inp(4)">4</button>
+    </td>
+			<td>
+   <button class="key"  onclick="inp(5)">5</button>
+    </td>
+    <td >
+            <button class="key"  value="6" onclick="inp(6)">6</button>
+    </td>
+    <td >
+            <button class="key" onclick =operator("+") >+</button>
+    </td>
+</tr>
+<tr>
+			<td >
+               <button class="key"  onclick=hacker("log")>log</button>
+    </td>
+    <td >
+            <button class="key"  onclick="inp(1)">1</button>
+    </td>
+    <td >
+            <button class="key"  onclick="inp(2)">2</button>
+    </td>
+    <td >
+            <button class="key"  onclick="inp(3)">3</button>
+    </td>
+    
+     <td  rowspan="2">
+            <button class="eql" onclick="equals()">=</button>
+    </td>
+</tr>
+<tr>
+			<td >
+               <button class="key"  onclick="fact()">n!</button>
+    </td>                
+			<td >
+            <button class="key"  onclick = inp(".")>.</button>
+    </td>
+    <td >
+			<button class="key"  onclick="inp(0)">0</button>
+			</td>		
+			<td >
+               <button class="key" onclick=hacker("sqrt")>sqrt</button>
+    </td>
+    
+ </tr>
+	     	      	    
+		</table>
+
+</div>
+
+</body>
+
+</html>
